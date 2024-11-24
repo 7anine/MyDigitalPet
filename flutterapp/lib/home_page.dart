@@ -73,28 +73,43 @@ class Group31 extends StatelessWidget {
           // SingleCard Widgets
           SingleCard(
             name: 'Jasper',
-            imageUrl: 'https://via.placeholder.com/100x100',
-            cornerImage: 'https://via.placeholder.com/21x25',
+            imageUrl: 'assets/images/animal_1.avif',
+            topRightImage: 'assets/images/icon_3.png',
+            topLeftImage: 'assets/images/icon_2_1.png',
+            bottomRightImage: 'assets/images/human_1.avif',
+            bottomLeftImage: 'assets/images/icon_1_2.png',
           ),
           SingleCard(
             name: 'Buster',
-            imageUrl: 'https://via.placeholder.com/100x100',
-            cornerImage: 'https://via.placeholder.com/22x25',
+            imageUrl: 'assets/images/animal_2.avif',
+            topRightImage: 'assets/images/icon_3.png',
+            topLeftImage: 'assets/images/icon_2_2.png',
+            bottomRightImage: 'assets/images/human_1.avif',
+            bottomLeftImage: 'assets/images/icon_1_2.png',
           ),
           SingleCard(
             name: 'Peanut',
-            imageUrl: 'https://via.placeholder.com/100x100',
-            cornerImage: 'https://via.placeholder.com/20x20',
+            imageUrl: 'assets/images/animal_3.avif',
+            topRightImage: 'assets/images/icon_3.png',
+            topLeftImage: 'assets/images/icon_2_1.png',
+            bottomRightImage: 'assets/images/human_1.avif',
+            bottomLeftImage: 'assets/images/icon_1_2.png',
           ),
           SingleCard(
             name: 'Stewart',
-            imageUrl: 'https://via.placeholder.com/100x100',
-            cornerImage: 'https://via.placeholder.com/22x22',
+            imageUrl: 'assets/images/animal_4.avif',
+            topRightImage: 'assets/images/icon_3.png',
+            topLeftImage: 'assets/images/icon_2_2.png',
+            bottomRightImage: 'assets/images/human_1.avif',
+            bottomLeftImage: 'assets/images/icon_1_1.png',
           ),
           SingleCard(
             name: 'Tito',
-            imageUrl: 'https://via.placeholder.com/100x100',
-            cornerImage: 'https://via.placeholder.com/22x22',
+            imageUrl: 'assets/images/animal_5.avif',
+            topRightImage: 'assets/images/icon_3.png',
+            topLeftImage: 'assets/images/icon_2_2.png',
+            bottomRightImage: 'assets/images/human_1.avif',
+            bottomLeftImage: 'assets/images/icon_1_2.png',
           ),
           AddCard()
         ],
@@ -125,23 +140,28 @@ class AddCard extends StatelessWidget {
         child: Icon(
           Icons.add,
           color: const Color(0xFF257180),
-          size: cardWidth * 0.4, // Adjust size of the plus sign
+          size: cardWidth * 0.5,
         ),
       ),
     );
   }
 }
 
-
 class SingleCard extends StatelessWidget {
   final String name;
   final String imageUrl;
-  final String cornerImage;
+  final String topRightImage;
+  final String topLeftImage;
+  final String bottomRightImage;
+  final String bottomLeftImage;
 
   const SingleCard({
     required this.name,
     required this.imageUrl,
-    required this.cornerImage,
+    required this.topRightImage,
+    required this.topLeftImage,
+    required this.bottomRightImage,
+    required this.bottomLeftImage,
     super.key,
   });
 
@@ -195,7 +215,7 @@ class SingleCard extends StatelessWidget {
                           height: cardWidth * 0.15,
                           decoration: ShapeDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(cornerImage),
+                              image: AssetImage(topLeftImage),
                               fit: BoxFit.cover,
                             ),
                             shape: const OvalBorder(),
@@ -207,7 +227,7 @@ class SingleCard extends StatelessWidget {
                           height: cardWidth * 0.15,
                           decoration: ShapeDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(cornerImage),
+                              image: AssetImage(bottomLeftImage),
                               fit: BoxFit.cover,
                             ),
                             shape: const OvalBorder(),
@@ -222,7 +242,7 @@ class SingleCard extends StatelessWidget {
                     height: cardWidth * 0.6,
                     decoration: ShapeDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(imageUrl),
+                        image: AssetImage(imageUrl),
                         fit: BoxFit.cover,
                       ),
                       shape: const OvalBorder(),
@@ -241,7 +261,7 @@ class SingleCard extends StatelessWidget {
                           height: cardWidth * 0.15,
                           decoration: ShapeDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(cornerImage),
+                              image: AssetImage(topRightImage),
                               fit: BoxFit.cover,
                             ),
                             shape: const OvalBorder(),
@@ -253,7 +273,7 @@ class SingleCard extends StatelessWidget {
                           height: cardWidth * 0.15,
                           decoration: ShapeDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(cornerImage),
+                              image: AssetImage(bottomRightImage),
                               fit: BoxFit.cover,
                             ),
                             shape: const OvalBorder(),
