@@ -128,11 +128,11 @@ class HungerMeter extends StatelessWidget {
 
   Widget getImageHunger(double level) {
     if (level >= 0.8) {
-        return Image.asset('assets/images/DogBowlGreen.png', width : 50 , height : 50 , fit: BoxFit.contain,);
+        return Image.asset('assets/images/DogBowlGreen.png', width : 50 , height : 50 , fit: BoxFit.fill,);
     } else if (level > 0.5) {
-        return Image.asset('assets/images/DogBowlOrange.jpg', width : 50 , height : 50 , fit: BoxFit.contain,);
+        return Image.asset('assets/images/DogBowlOrange.png', width : 50 , height : 50 , fit: BoxFit.fill,);
     } else {
-        return Image.asset('assets/images/DogBowlRed.png', width : 50 , height : 50 , fit: BoxFit.contain,);
+        return Image.asset('assets/images/DogBowlRed.png', width : 50 , height : 50 , fit: BoxFit.fill,);
     }
   }
 
@@ -205,11 +205,11 @@ class MoodMeter extends StatelessWidget {
 
   Widget getImageMood(double level) {
     if (level >= 0.8) {
-      return Image.asset('assets/images/SmileyGreen.png', width : 50 , height : 50 , fit: BoxFit.contain,);
+      return Image.asset('assets/images/SmileyGreen.png', width : 50 , height : 50 , fit: BoxFit.fill,);
     } else if (level > 0.5) {
-      return Image.asset('assets/images/SmileyOrange.jpg', width : 50 , height : 50 , fit: BoxFit.contain,);
+      return Image.asset('assets/images/SmileyOrange.png', width : 50 , height : 50 , fit: BoxFit.fill,);
     } else {
-      return Image.asset('assets/images/SmileyRed.png', width : 50 , height : 50 , fit: BoxFit.contain,);
+      return Image.asset('assets/images/SmileyRed.png', width : 50 , height : 50 , fit: BoxFit.fill,);
     }
   }
 
