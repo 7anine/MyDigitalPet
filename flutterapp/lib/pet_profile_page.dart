@@ -58,14 +58,14 @@ class PetProfileBody extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 20.0, top: 92-40), // Adjust the padding as needed
-          child: MoodMeter(moodLevel: 0.6),
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0, top: 92-40), // Adjust the padding as needed
+          child: MoodMeter(moodLevel: pet.mood),
         ),
-        PetInfo(petName: pet.name, petDescription: pet.description, ),
-        const Padding(
-          padding: EdgeInsets.only(right: 20.0, top: 94-40), // Adjust the padding as needed
-          child: HungerMeter(hungerLevel: 0.6),
+        PetInfo(petName: pet.name, petDescription: pet.description, petImage: pet.image,),
+        Padding(
+          padding: const EdgeInsets.only(right: 20.0, top: 94-40), // Adjust the padding as needed
+          child: HungerMeter(hungerLevel: pet.hunger),
         ),
       ],
       );
@@ -76,7 +76,8 @@ class PetProfileBody extends StatelessWidget {
 class PetInfo extends StatelessWidget {
   final String petName;
   final String petDescription;
-  const PetInfo({super.key, required this.petName, required this.petDescription });
+  final String petImage;
+  const PetInfo({super.key, required this.petName, required this.petDescription,required this.petImage });
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -94,7 +95,7 @@ class PetInfo extends StatelessWidget {
         ClipRRect(
             borderRadius: BorderRadius.circular(90.0),
           child: Image.asset(
-            'assets/images/Jasper.jpg',
+            petImage,
             width: 200,
             height: 200,
             fit: BoxFit.cover, // Adjust the fit as needed
