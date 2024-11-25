@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pet_profile_page.dart';
 import 'home_page.dart';
 import 'login_page.dart';
 
@@ -15,8 +16,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
+        '/petprofile': (context) => const PetProfile(),
       },
-      home: const HomePage(),
+      home: const PetProfile(),
     );
   }
 }

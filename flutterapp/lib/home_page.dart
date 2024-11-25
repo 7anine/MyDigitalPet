@@ -77,7 +77,7 @@ class Group31 extends StatelessWidget {
             topRightImage: 'assets/images/icon_3.png',
             topLeftImage: 'assets/images/icon_2_1.png',
             bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/icon_1_2.png',
+            bottomLeftImage: 'assets/images/Bowl-orange.png',
           ),
           SingleCard(
             name: 'Buster',
@@ -85,7 +85,7 @@ class Group31 extends StatelessWidget {
             topRightImage: 'assets/images/icon_3.png',
             topLeftImage: 'assets/images/icon_2_2.png',
             bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/icon_1_2.png',
+            bottomLeftImage: 'assets/images/Bowl-orange.png',
           ),
           SingleCard(
             name: 'Peanut',
@@ -93,7 +93,7 @@ class Group31 extends StatelessWidget {
             topRightImage: 'assets/images/icon_3.png',
             topLeftImage: 'assets/images/icon_2_1.png',
             bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/icon_1_2.png',
+            bottomLeftImage: 'assets/images/Bowl-orange.png',
           ),
           SingleCard(
             name: 'Stewart',
@@ -109,7 +109,7 @@ class Group31 extends StatelessWidget {
             topRightImage: 'assets/images/icon_3.png',
             topLeftImage: 'assets/images/icon_2_2.png',
             bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/icon_1_2.png',
+            bottomLeftImage: 'assets/images/Bowl-orange.png',
           ),
           AddCard()
         ],
