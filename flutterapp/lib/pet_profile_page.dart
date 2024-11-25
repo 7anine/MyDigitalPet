@@ -40,7 +40,7 @@ class PetProfile extends StatelessWidget{
           ],
         ),
       ),
-      body: const PetProfileBody(),
+      body: const PetProfileBody(petQuote: petQuote,),
     );
   }
 }
@@ -48,7 +48,8 @@ class PetProfile extends StatelessWidget{
 
 
 class PetProfileBody extends StatelessWidget {
-  const PetProfileBody({super.key});
+  final String petQuote;
+  const PetProfileBody({super.key,required this.petQuote });
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -56,18 +57,12 @@ class PetProfileBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 20.0, top: 92), // Adjust the padding as needed
+          padding: EdgeInsets.only(left: 20.0, top: 92-40), // Adjust the padding as needed
           child: MoodMeter(moodLevel: 0.6),
         ),
-        Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-        Text('Jasper' , style: TextStyles.PetProfileFont1,),
-        SizedBox(height: 10), // Adjust the spacing as needed
-        ],
-        ),
+        PetInfo(petName: 'Jasper', petDescription: '5 year old border collie', petQuote: 'Specializes in belly rubs, and stealing socks.'),
         Padding(
-          padding: EdgeInsets.only(right: 20.0, top: 94), // Adjust the padding as needed
+          padding: EdgeInsets.only(right: 20.0, top: 94-40), // Adjust the padding as needed
           child: HungerMeter(hungerLevel: 0.6),
         ),
       ],
@@ -75,7 +70,38 @@ class PetProfileBody extends StatelessWidget {
   }
 }
 
-
+// Pet info widget -------------------------------------------------------------
+class PetInfo extends StatelessWidget {
+  final String petName;
+  final String petDescription;
+  const PetInfo({super.key, required this.petName, required this.petDescription });
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(top: 73-60), // Adjust the padding as needed
+          child:
+          Text(petName , style: TextStyles.PetProfileFont1,),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 5, bottom: 5,),
+          child:
+          Text(petDescription , style: TextStyles.PetProfileFont2,),
+        ),
+        ClipRRect(
+            borderRadius: BorderRadius.circular(90.0),
+          child: Image.asset(
+            'assets/images/Jasper.jpg',
+            width: 200,
+            height: 200,
+            fit: BoxFit.cover, // Adjust the fit as needed
+          )
+        ),
+      ],
+    );
+  }
+}
 
 
 //HUNGER METER------------------------------------------------------------------
@@ -87,6 +113,7 @@ class HungerMeter extends StatelessWidget {
     return Column(
       children: [
         getImageHunger(hungerLevel),
+        SizedBox(height: 10), // Add spacing here
         Stack(   //To stack the two containers (first one is at the bottom)
           children: [
             ClipRRect( //USED TO ADD CORNERS TO THE CONTAINER
@@ -157,6 +184,7 @@ class MoodMeter extends StatelessWidget {
     return Column(
         children: [
           getImageMood(moodLevel),
+          SizedBox(height: 10), // Add spacing here
           Stack( //To stack the two containers (first one is at the bottom)
               children: [
                 ClipRRect( //USED TO ADD CORNERS TO THE CONTAINER
