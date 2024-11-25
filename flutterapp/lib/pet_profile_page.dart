@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/app_colors.dart';
 import 'package:flutterapp/textstyle.dart';
+import 'package:flutterapp/PetClass.dart';
 
 class PetProfile extends StatelessWidget{
   const PetProfile ({super.key});
   @override
   Widget build(BuildContext context) {
+    final Pet pet = ModalRoute.of(context)?.settings.arguments as Pet; //retrieves the pet data that was passed from the home page
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -40,7 +42,7 @@ class PetProfile extends StatelessWidget{
           ],
         ),
       ),
-      body: const PetProfileBody(petQuote: petQuote,),
+      body: PetProfileBody(pet: pet,),
     );
   }
 }
@@ -48,20 +50,20 @@ class PetProfile extends StatelessWidget{
 
 
 class PetProfileBody extends StatelessWidget {
-  final String petQuote;
-  const PetProfileBody({super.key,required this.petQuote });
+  final Pet pet;
+  const PetProfileBody({super.key,required this.pet });
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 20.0, top: 92-40), // Adjust the padding as needed
           child: MoodMeter(moodLevel: 0.6),
         ),
-        PetInfo(petName: 'Jasper', petDescription: '5 year old border collie', petQuote: 'Specializes in belly rubs, and stealing socks.'),
-        Padding(
+        PetInfo(petName: pet.name, petDescription: pet.description, ),
+        const Padding(
           padding: EdgeInsets.only(right: 20.0, top: 94-40), // Adjust the padding as needed
           child: HungerMeter(hungerLevel: 0.6),
         ),

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/petprofile': (context) => const PetProfile(),
       },
-      home: const PetProfile(),
+      home: const HomePage(),
     );
   }
 }
