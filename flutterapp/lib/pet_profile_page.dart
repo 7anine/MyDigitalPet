@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/app_colors.dart';
+import 'package:flutterapp/textstyle.dart';
 
 class PetProfile extends StatelessWidget{
   const PetProfile ({super.key});
@@ -51,15 +52,22 @@ class PetProfileBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 20.0, top: 92), // Adjust the padding as needed
+          padding: EdgeInsets.only(left: 20.0, top: 92), // Adjust the padding as needed
           child: MoodMeter(moodLevel: 0.6),
         ),
+        Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        Text('Jasper' , style: TextStyles.PetProfileFont1,),
+        SizedBox(height: 10), // Adjust the spacing as needed
+        ],
+        ),
         Padding(
-          padding: const EdgeInsets.only(right: 20.0, top: 94), // Adjust the padding as needed
+          padding: EdgeInsets.only(right: 20.0, top: 94), // Adjust the padding as needed
           child: HungerMeter(hungerLevel: 0.6),
         ),
       ],
