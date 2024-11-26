@@ -9,8 +9,8 @@ class Pet {
     required this.hunger,
     required this.mood,
     required this.owner,
-    required this.tasks})  : description = '$age year old $breed', image = 'assets/images/$name.jpg', ownerimage = 'assets/images/$owner.jpg';
-
+    required this.tasks
+  }) : description = '$age year old $breed', image = 'assets/images/$name.jpg', ownerimage = 'assets/images/$owner.jpg';
 
   final String name;
   final int age;
@@ -22,7 +22,7 @@ class Pet {
   final String description;
   final String owner;   //Boy or Girl
   final String ownerimage;
-  final List<String> tasks;
+  final List<Map<String, String>> tasks; // Update the type of tasks
 }
 
 class PetListNotifier extends StateNotifier<List<Pet>> {

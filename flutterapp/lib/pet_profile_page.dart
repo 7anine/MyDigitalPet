@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/app_colors.dart';
 import 'package:flutterapp/textstyle.dart';
 import 'package:flutterapp/PetClass.dart';
+import 'dart:math';
 
 class PetProfile extends StatelessWidget{
   const PetProfile ({super.key});
@@ -48,10 +49,34 @@ class PetProfile extends StatelessWidget{
 }
 
 
-
-class PetProfileBody extends StatelessWidget {
+class PetProfileBody extends StatefulWidget {
   final Pet pet;
-  const PetProfileBody({super.key,required this.pet });
+  const PetProfileBody({super.key, required this.pet});
+  @override
+  _PetProfileBodyState createState() => _PetProfileBodyState();
+}
+
+class _PetProfileBodyState extends State<PetProfileBody> {
+  double hungerLevel = 0.0; // Initialize with pet's hunger
+  double moodLevel = 0.0;   // Initialize with pet's mood
+
+  @override
+  void initState() {
+    super.initState();
+    hungerLevel = widget.pet.hunger;
+    moodLevel = widget.pet.mood;
+  }
+
+  void updateHungerMood(String taskType, double value) {
+    setState(() {
+      if (taskType == 'hunger') {
+        hungerLevel = min(hungerLevel + value, 1.0);
+      } else if (taskType == 'mood') {
+        moodLevel = min(moodLevel + value, 1.0);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -59,44 +84,46 @@ class PetProfileBody extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 92-40), // Adjust the padding as needed
-                child: MoodMeter(moodLevel: pet.mood),
-              ),
-              PetInfo(petName: pet.name, petDescription: pet.description, petImage: pet.image,),
-              Padding(
-                padding: const EdgeInsets.only(right: 20.0, top: 94-40), // Adjust the padding as needed
-                child: HungerMeter(hungerLevel: pet.hunger),
-              ),
-            ],
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, top: 52), // Adjust the padding as needed
+              child: MoodMeter(moodLevel: moodLevel),
+            ),
+            PetInfo(petName: widget.pet.name, petDescription: widget.pet.description, petImage: widget.pet.image),
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0, top: 54), // Adjust the padding as needed
+              child: HungerMeter(hungerLevel: hungerLevel),
+            ),
+          ],
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: 20.0), // Adjust padding as needed
-          child: Text(pet.quote, style: TextStyles.PetProfileFont3) // Customize text style
-          ),
+          padding: const EdgeInsets.only(bottom: 20.0), // Adjust padding as needed
+          child: Text(widget.pet.quote, style: TextStyles.PetProfileFont3), // Customize text style
+        ),
         ListView.builder(
-          itemCount: pet.tasks.length,
+          itemCount: widget.pet.tasks.length,
           itemBuilder: (context, index) {
+            final task = widget.pet.tasks[index];
             return Column(
               children: [
-                TaskCard(taskText: pet.tasks[index]),
-                if (index != pet.tasks.length - 1) Divider(color: Colors.white,), // Add a divider except for the last item
+                TaskCard(taskText: task['text']!, taskType: task['type']!, taskValue: double.parse(task['value']!)),
+                if (index != widget.pet.tasks.length - 1) Divider(color: Colors.white),
               ],
             );
           },
           shrinkWrap: true,
-        )
-        // TaskCard(taskText: pet.tasks[0])
-      ]
+        ),
+      ],
     );
   }
 }
 
-//TASK CARD WIDGET-----------------------------------------------------------------
 class TaskCard extends StatefulWidget {
   final String taskText;
-  const TaskCard({super.key, required this.taskText});
+  final String taskType;
+  final double taskValue;
+  bool isCompleted;
+  TaskCard({super.key, required this.taskText, required this.taskType, required this.taskValue, this.isCompleted = false});
 
   @override
   State<TaskCard> createState() => _TaskCardState();
@@ -108,9 +135,14 @@ class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: _isClicked ? null : () {
         setState(() {
-          _isClicked = !_isClicked;
+          final petProfileBodyState = context.findAncestorStateOfType<_PetProfileBodyState>();
+          if (petProfileBodyState != null) {
+            petProfileBodyState.updateHungerMood(widget.taskType, widget.taskValue);
+            widget.isCompleted = true;
+            _isClicked = true;
+          }
         });
       },
       child: Container(
