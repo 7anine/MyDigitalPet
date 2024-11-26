@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/PetData.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,49 +69,74 @@ class Group31 extends StatelessWidget {
         crossAxisCount: 3, // 3 cards per row
         crossAxisSpacing: screenWidth * 0.02, // 2% spacing between columns
         mainAxisSpacing: screenWidth * 0.02, // 2% spacing between rows
-        children: const [
-          // SingleCard Widgets
-          SingleCard(
-            name: 'Jasper',
-            imageUrl: 'assets/images/animal_1.avif',
-            topRightImage: 'assets/images/icon_3.png',
-            topLeftImage: 'assets/images/icon_2_1.png',
-            bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/Bowl-orange.png',
+        children: [
+            // SingleCard Widgets
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/petprofile', arguments: pets[0]);
+            },
+            child: const SingleCard(
+              name: 'Jasper',
+              imageUrl: 'assets/images/animal_1.avif',
+              topRightImage: 'assets/images/icon_3.png',
+              topLeftImage: 'assets/images/icon_2_1.png',
+              bottomRightImage: 'assets/images/human_1.avif',
+              bottomLeftImage: 'assets/images/Bowl-orange.png',
+            ),
           ),
-          SingleCard(
-            name: 'Buster',
-            imageUrl: 'assets/images/animal_2.avif',
-            topRightImage: 'assets/images/icon_3.png',
-            topLeftImage: 'assets/images/icon_2_2.png',
-            bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/Bowl-orange.png',
+          GestureDetector(
+          onTap: () {
+          Navigator.pushNamed(context, '/petprofile', arguments: pets[1]);
+          },
+          child: const SingleCard(
+              name: 'Buster',
+              imageUrl: 'assets/images/animal_2.avif',
+              topRightImage: 'assets/images/icon_3.png',
+              topLeftImage: 'assets/images/icon_2_2.png',
+              bottomRightImage: 'assets/images/human_1.avif',
+              bottomLeftImage: 'assets/images/Bowl-orange.png',
+            ),
           ),
-          SingleCard(
-            name: 'Peanut',
-            imageUrl: 'assets/images/animal_3.avif',
-            topRightImage: 'assets/images/icon_3.png',
-            topLeftImage: 'assets/images/icon_2_1.png',
-            bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/Bowl-orange.png',
+          GestureDetector(
+          onTap: () {
+          Navigator.pushNamed(context, '/petprofile', arguments: pets[2]);
+          },
+          child: const SingleCard(
+              name: 'Peanut',
+              imageUrl: 'assets/images/animal_3.avif',
+              topRightImage: 'assets/images/icon_3.png',
+              topLeftImage: 'assets/images/icon_2_1.png',
+              bottomRightImage: 'assets/images/human_1.avif',
+              bottomLeftImage: 'assets/images/Bowl-orange.png',
+            ),
           ),
-          SingleCard(
-            name: 'Stewart',
-            imageUrl: 'assets/images/animal_4.avif',
-            topRightImage: 'assets/images/icon_3.png',
-            topLeftImage: 'assets/images/icon_2_2.png',
-            bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/icon_1_1.png',
+          GestureDetector(
+          onTap: () {
+          Navigator.pushNamed(context, '/petprofile', arguments: pets[3]);
+          },
+          child: const SingleCard(
+              name: 'Stewart',
+              imageUrl: 'assets/images/animal_4.avif',
+              topRightImage: 'assets/images/icon_3.png',
+              topLeftImage: 'assets/images/icon_2_2.png',
+              bottomRightImage: 'assets/images/human_1.avif',
+              bottomLeftImage: 'assets/images/icon_1_1.png',
+            ),
           ),
-          SingleCard(
-            name: 'Tito',
-            imageUrl: 'assets/images/animal_5.avif',
-            topRightImage: 'assets/images/icon_3.png',
-            topLeftImage: 'assets/images/icon_2_2.png',
-            bottomRightImage: 'assets/images/human_1.avif',
-            bottomLeftImage: 'assets/images/Bowl-orange.png',
+          GestureDetector(
+          onTap: () {
+          Navigator.pushNamed(context, '/petprofile', arguments: pets[4]);
+          },
+          child: const SingleCard(
+              name: 'Tito',
+              imageUrl: 'assets/images/animal_5.avif',
+              topRightImage: 'assets/images/icon_3.png',
+              topLeftImage: 'assets/images/icon_2_2.png',
+              bottomRightImage: 'assets/images/human_1.avif',
+              bottomLeftImage: 'assets/images/Bowl-orange.png',
+            ),
           ),
-          AddCard()
+          const AddCard()
         ],
       ),
     );
