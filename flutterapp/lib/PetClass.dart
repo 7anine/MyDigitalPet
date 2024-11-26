@@ -17,12 +17,12 @@ class Pet {
   final String breed;
   final String image;
   final String quote;
-  final double hunger;
-  final double mood;
+   double hunger;
+   double mood;
   final String description;
   final String owner;   //Boy or Girl
   final String ownerimage;
-  final List<Map<String, String>> tasks; // Update the type of tasks
+  final List<Map<String, dynamic>> tasks; // Update the type of tasks
 }
 
 class PetListNotifier extends StateNotifier<List<Pet>> {

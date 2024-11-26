@@ -57,8 +57,8 @@ class PetProfileBody extends StatefulWidget {
 }
 
 class _PetProfileBodyState extends State<PetProfileBody> {
-  double hungerLevel = 0.0; // Initialize with pet's hunger
-  double moodLevel = 0.0;   // Initialize with pet's mood
+  double hungerLevel = 0.0;
+  double moodLevel = 0.0;
 
   @override
   void initState() {
@@ -77,28 +77,45 @@ class _PetProfileBodyState extends State<PetProfileBody> {
     });
   }
 
+  void completeTask(int index) {
+    setState(() {
+      widget.pet.tasks[index]['isCompleted'] = true;
+    });
+  }
+
+  @override
+  void dispose() {
+    // Update the pet object with the new hunger and mood levels before disposing
+    widget.pet.hunger = hungerLevel;
+    widget.pet.mood = moodLevel;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 52), // Adjust the padding as needed
+              padding: const EdgeInsets.only(left: 20.0, top: 52),
               child: MoodMeter(moodLevel: moodLevel),
             ),
-            PetInfo(petName: widget.pet.name, petDescription: widget.pet.description, petImage: widget.pet.image),
+            PetInfo(
+              petName: widget.pet.name,
+              petDescription: widget.pet.description,
+              petImage: widget.pet.image,
+            ),
             Padding(
-              padding: const EdgeInsets.only(right: 20.0, top: 54), // Adjust the padding as needed
+              padding: const EdgeInsets.only(right: 20.0, top: 54),
               child: HungerMeter(hungerLevel: hungerLevel),
             ),
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(bottom: 20.0), // Adjust padding as needed
-          child: Text(widget.pet.quote, style: TextStyles.PetProfileFont3), // Customize text style
+          padding: const EdgeInsets.only(bottom: 20.0),
+          child: Text(widget.pet.quote, style: TextStyles.PetProfileFont3),
         ),
         ListView.builder(
           itemCount: widget.pet.tasks.length,
@@ -106,7 +123,16 @@ class _PetProfileBodyState extends State<PetProfileBody> {
             final task = widget.pet.tasks[index];
             return Column(
               children: [
-                TaskCard(taskText: task['text']!, taskType: task['type']!, taskValue: double.parse(task['value']!)),
+                TaskCard(
+                  taskText: task['text']!,
+                  taskType: task['type']!,
+                  taskValue: double.parse(task['value']!),
+                  isCompleted: task['isCompleted'] ?? false,
+                  onComplete: () {
+                    updateHungerMood(task['type']!, double.parse(task['value']!));
+                    completeTask(index);
+                  },
+                ),
                 if (index != widget.pet.tasks.length - 1) Divider(color: Colors.white),
               ],
             );
@@ -122,8 +148,17 @@ class TaskCard extends StatefulWidget {
   final String taskText;
   final String taskType;
   final double taskValue;
-  bool isCompleted;
-  TaskCard({super.key, required this.taskText, required this.taskType, required this.taskValue, this.isCompleted = false});
+  final bool isCompleted;
+  final VoidCallback onComplete;
+
+  TaskCard({
+    super.key,
+    required this.taskText,
+    required this.taskType,
+    required this.taskValue,
+    required this.isCompleted,
+    required this.onComplete,
+  });
 
   @override
   State<TaskCard> createState() => _TaskCardState();
@@ -133,16 +168,18 @@ class _TaskCardState extends State<TaskCard> {
   bool _isClicked = false;
 
   @override
+  void initState() {
+    super.initState();
+    _isClicked = widget.isCompleted;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _isClicked ? null : () {
         setState(() {
-          final petProfileBodyState = context.findAncestorStateOfType<_PetProfileBodyState>();
-          if (petProfileBodyState != null) {
-            petProfileBodyState.updateHungerMood(widget.taskType, widget.taskValue);
-            widget.isCompleted = true;
-            _isClicked = true;
-          }
+          _isClicked = true;
+          widget.onComplete();
         });
       },
       child: Container(
