@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/home_page_child.dart';
 import 'package:flutterapp/pet_profile_page.dart';
+import 'package:flutterapp/pet_profile_page_child.dart';
 import 'home_page.dart';
 import 'login_page.dart';
 
@@ -16,9 +18,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
+        '/home_child': (context) => const HomePageChild(),
         '/petprofile': (context) => const PetProfile(),
+        '/petprofile_child': (context) => const PetProfileChild(),
       },
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }

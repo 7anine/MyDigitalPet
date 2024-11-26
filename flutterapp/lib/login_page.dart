@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String _selectedAccountType = 'Parent'; // Default account type
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +127,55 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
+            // Account Type Label
+            const Positioned(
+              top: 450,
+              left: 40,
+              child: Text(
+                'ACCOUNT TYPE',
+                style: TextStyle(
+                  color: Color(0xFFF2E5BF),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            // Account Type Dropdown
+            Positioned(
+              top: 480,
+              left: 40,
+              right: 40,
+              child: Container(
+                height: 45,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    value: _selectedAccountType,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _selectedAccountType = newValue!;
+                      });
+                    },
+                    items: <String>['Parent', 'Child']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Text(value),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ),
+            ),
             // Sign In Button
             Positioned(
-              top: 450,
+              top: 550,
               left: 40,
               right: 40,
               child: SizedBox(
@@ -135,9 +188,11 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Sign In clicked')),
-                    );
+                    if (_selectedAccountType == 'Parent') {
+                      Navigator.pushNamed(context, '/home');
+                    } else {
+                      Navigator.pushNamed(context, '/home_child');
+                    }
                   },
                   child: const Text(
                     'SIGN IN',
@@ -152,7 +207,7 @@ class LoginPage extends StatelessWidget {
             ),
             // Forgot Password
             Positioned(
-              top: 520,
+              top: 620,
               left: 0,
               right: 0,
               child: Center(
@@ -170,40 +225,6 @@ class LoginPage extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                ),
-              ),
-            ),
-            // Sign In with Google Button
-            Positioned(
-              top: 580,
-              left: 40,
-              right: 40,
-              child: SizedBox(
-                height: 50,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFEEEEEE),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  icon: Image.network(
-                    'https://via.placeholder.com/29x17',
-                    height: 20,
-                  ),
-                  label: const Text(
-                    'Sign In with Google',
-                    style: TextStyle(
-                      color: Color(0xFF182241),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Google Sign In clicked')),
-                    );
-                  },
                 ),
               ),
             ),
