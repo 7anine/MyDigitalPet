@@ -9,14 +9,20 @@ class TextStyles {
   );
 
   static const TextStyle PetProfileFont2 = TextStyle(
-    fontFamily: 'OpenSansExtrabold',
+    fontFamily: 'OpenSansExtraBold',
     fontSize: 12.0,
     color: AppColors.PetBlue,
   );
 
   static const TextStyle PetProfileFont3 = TextStyle(
-    fontFamily: 'OpenSansExtraboldItalic',
-    fontSize: 12.0,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.italic,
+    fontSize: 15.0,
     color: AppColors.PetBlue,
+  );
+
+  static const TextStyle PetProfileFont4 = TextStyle(
+    fontFamily: 'OpenSansExtraBold',
+    fontSize: 10.0,
   );
 }

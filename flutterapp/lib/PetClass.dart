@@ -8,7 +8,8 @@ class Pet {
     required this.quote,
     required this.hunger,
     required this.mood,
-    required this.owner})  : description = '$age year old $breed', image = 'assets/images/$name.jpg', ownerimage = 'assets/images/$owner.jpg';
+    required this.owner,
+    required this.tasks})  : description = '$age year old $breed', image = 'assets/images/$name.jpg', ownerimage = 'assets/images/$owner.jpg';
 
 
   final String name;
@@ -21,6 +22,7 @@ class Pet {
   final String description;
   final String owner;   //Boy or Girl
   final String ownerimage;
+  final List<String> tasks;
 }
 
 class PetListNotifier extends StateNotifier<List<Pet>> {

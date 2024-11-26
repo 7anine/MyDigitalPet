@@ -59,15 +59,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   fonts:
-    - family: OpenSansExtrabold
+    - family: OpenSansExtraBold
       fonts:
         - asset: assets/fonts/OpenSans-ExtraBold.ttf
-    - family: OpenSans
-      fonts:
-        - asset: assets/fonts/OpenSans.ttf
-    - family: OpenSansExtraBoldItalic
-      fonts:
-        - asset: assets/fonts/OpenSans-ExtraBoldItalic.ttf
 
   uses-material-design: true
   assets:

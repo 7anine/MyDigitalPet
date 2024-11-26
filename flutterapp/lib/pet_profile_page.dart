@@ -55,20 +55,100 @@ class PetProfileBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0, top: 92-40), // Adjust the padding as needed
-          child: MoodMeter(moodLevel: pet.mood),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, top: 92-40), // Adjust the padding as needed
+                child: MoodMeter(moodLevel: pet.mood),
+              ),
+              PetInfo(petName: pet.name, petDescription: pet.description, petImage: pet.image,),
+              Padding(
+                padding: const EdgeInsets.only(right: 20.0, top: 94-40), // Adjust the padding as needed
+                child: HungerMeter(hungerLevel: pet.hunger),
+              ),
+            ],
         ),
-        PetInfo(petName: pet.name, petDescription: pet.description, petImage: pet.image,),
         Padding(
-          padding: const EdgeInsets.only(right: 20.0, top: 94-40), // Adjust the padding as needed
-          child: HungerMeter(hungerLevel: pet.hunger),
+          padding: EdgeInsets.only(bottom: 20.0), // Adjust padding as needed
+          child: Text(pet.quote, style: TextStyles.PetProfileFont3) // Customize text style
+          ),
+        ListView.builder(
+          itemCount: pet.tasks.length,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                TaskCard(taskText: pet.tasks[index]),
+                if (index != pet.tasks.length - 1) Divider(color: Colors.white,), // Add a divider except for the last item
+              ],
+            );
+          },
+          shrinkWrap: true,
+        )
+        // TaskCard(taskText: pet.tasks[0])
+      ]
+    );
+  }
+}
+
+//TASK CARD WIDGET-----------------------------------------------------------------
+class TaskCard extends StatefulWidget {
+  final String taskText;
+  const TaskCard({super.key, required this.taskText});
+
+  @override
+  State<TaskCard> createState() => _TaskCardState();
+}
+
+class _TaskCardState extends State<TaskCard> {
+  bool _isClicked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isClicked = !_isClicked;
+        });
+      },
+      child: Container(
+        width: 378,
+        height: 49,
+        decoration: BoxDecoration(
+          color: _isClicked ? AppColors.PetGrey : AppColors.PetBeige,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
-      ],
-      );
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Center(
+                  child: Text(widget.taskText, style: TextStyles.PetProfileFont4),
+                ),
+              ),
+              if (_isClicked)
+                Image.asset(
+                  'assets/images/checkmark.png',
+                  width: 20,
+                  height: 20,
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -105,7 +185,6 @@ class PetInfo extends StatelessWidget {
     );
   }
 }
-
 
 //HUNGER METER------------------------------------------------------------------
 class HungerMeter extends StatelessWidget {

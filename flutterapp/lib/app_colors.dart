@@ -5,5 +5,6 @@ class AppColors {  //!! The first two hexadecimal digits represent the opacity o
   static const PetOrange  = Color(0xFFFD8B51);
   static const PetBeige  = Color(0xFFF2E5BF);
   static const PetRed  = Color(0xFFCB6040);
+  static const PetGrey  = Color(0xFFD9D9D9);
 // ... more colors
 }
