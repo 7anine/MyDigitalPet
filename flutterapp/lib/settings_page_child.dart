@@ -40,13 +40,8 @@ class SettingsPageChild extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          _buildCard(context, 'Assign Responsible', leading: CircleAvatar(
-            radius: 20,
-            backgroundImage: AssetImage(pet.ownerimage),
-          )),
-          _buildCard(context, 'Task History'),
-          _buildCard(context, 'Manage Tasks'),
           _buildCard(context, 'Edit Pet Info'),
+          _buildCard(context, 'Task History'),
           _buildCard(context, 'Resource Center'),
           _buildCard(context, 'Vet Records'),
         ],
