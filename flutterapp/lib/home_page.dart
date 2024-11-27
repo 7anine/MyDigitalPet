@@ -7,51 +7,49 @@ import 'app_colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
-        backgroundColor: const Color(0xFF257180),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        title: const Text('Home Page'),
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.person,
+              color: Color(0xFFF2E5BF),
+              size: 30,
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            },
+          ),
+        ],
+      ),
+      body: const Group31(),
+      bottomNavigationBar: Container(
+        color: AppColors.PetBlue,
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // Home Icon Button (Left)
             IconButton(
-              icon: const Icon(
-                Icons.home,
-                color: Color(0xFFF2E5BF),
-                size: 30,
-              ),
+              icon: const Icon(Icons.add, color: Colors.white, size: 30),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Already on Home Page!')),
-                );
+                // Add your onPressed code here
               },
             ),
-            // Title
-            const Text(
-              'Home',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('assets/images/Boy.jpg'),
             ),
-            // User Icon Button (Right)
-            IconButton(
-              icon: const Icon(
-                Icons.person,
-                color: Color(0xFFF2E5BF),
-                size: 30,
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/login');
-              },
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('assets/images/Girl.jpg'),
             ),
           ],
         ),
       ),
-      body: const Group31(),
     );
   }
 }
