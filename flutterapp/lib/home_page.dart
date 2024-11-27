@@ -115,8 +115,21 @@ class Group31 extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10), // Reduced spacing between the grids
+        Padding(
+          padding: const EdgeInsets.only(left: 18.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              Text(
+                'Tasks:',
+                style: TextStyles.PetProfileFont1,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 10), // Spacing between the text and the list of tasks
         // Scrollable list of tasks
-        Flexible(
+        Expanded(
           child: SingleChildScrollView(
             child: Column(
               children: [
