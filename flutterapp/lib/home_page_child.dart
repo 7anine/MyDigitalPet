@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/PetData.dart';
 import 'package:flutterapp/PetClass.dart';
+import 'package:flutterapp/textstyle.dart';
+
+import 'app_colors.dart';
 
 
 class HomePageChild extends StatelessWidget {
@@ -62,27 +65,95 @@ class Group31 extends StatelessWidget {
     // Retrieve screen dimensions
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Filter pets to only include those with owner set as 'Boy'
-    final boyPets = pets.where((pet) => pet.owner == 'Boy').toList();
-
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: screenWidth * 0.02,
-        vertical: screenWidth * 0.02,
-      ),
-      child: GridView.count(
-        crossAxisCount: 3, // 3 cards per row
-        crossAxisSpacing: screenWidth * 0.02, // 2% spacing between columns
-        mainAxisSpacing: screenWidth * 0.02, // 2% spacing between rows
-        children: boyPets.map((pet) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/petprofile_child', arguments: pet);
-            },
-            child: SingleCard(pet: pet),
-          );
-        }).toList(),
-      ),
+    return Column(
+      children: [
+        // Scrollable GridView
+        Flexible(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: screenWidth * 0.02,
+                vertical: screenWidth * 0.02,
+              ),
+              child: GridView.count(
+                crossAxisCount: 3, // 3 cards per row
+                crossAxisSpacing: screenWidth * 0.02, // 2% spacing between columns
+                mainAxisSpacing: screenWidth * 0.02, // 2% spacing between rows
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  ...pets.where((pet) => pet.owner == 'Boy').map((pet) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/petprofile', arguments: pet);
+                      },
+                      child: SingleCard(pet: pet),
+                    );
+                  }).toList(),
+                  const AddCard(), // AddCard at the end
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10), // Reduced spacing between the grids
+        // Scrollable list of tasks
+        Flexible(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ...pets.where((pet) => pet.owner == 'Boy').expand((pet) => pet.tasks.where((task) => !task['isCompleted']).map((task) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5.0),
+                    child: Container(
+                      height: 49,
+                      decoration: BoxDecoration(
+                        color: AppColors.PetBeige,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            // Pet Image
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: AssetImage(pet.image),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            // Task Text
+                            Flexible(
+                              child: Center(
+                                child: Text(task['text'], style: TextStyles.PetProfileFont4),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                })).toList(),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
