@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/app_colors.dart';
+import 'package:flutterapp/settings_page_child.dart';
 import 'package:flutterapp/textstyle.dart';
 import 'package:flutterapp/PetClass.dart';
 import 'dart:math';
@@ -24,9 +25,7 @@ class PetProfileChild extends StatelessWidget{
                 color: Color(0xFFF2E5BF),
                 size: 30,
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/settings_child');
-              },
+              onPressed: () => _navigateToSettings(context, pet.image),
             ),
             // Home Icon Button (Right)
             IconButton(
@@ -45,6 +44,16 @@ class PetProfileChild extends StatelessWidget{
       body: PetProfileBody(pet: pet,),
     );
   }
+
+  void _navigateToSettings(BuildContext context, String petImage) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SettingsPageChild(petImage: petImage),
+      ),
+    );
+  }
+
 }
 
 
