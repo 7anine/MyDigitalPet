@@ -101,7 +101,7 @@ class Group31 extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ...pets.expand((pet) => pet.tasks.map((task) {
+                ...pets.expand((pet) => pet.tasks.where((task) => !task['isCompleted']).map((task) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5.0),
                     child: Container(
