@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         '/petprofile': (context) => const PetProfile(),
         '/petprofile_child': (context) => const PetProfileChild(),
       },
-      home: const LoginPage(),
+      home: const HomePage(),
     );
   }
 }
