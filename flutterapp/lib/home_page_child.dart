@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/PetData.dart';
 import 'package:flutterapp/PetClass.dart';
 
+/*
 class HomePageChild extends StatelessWidget {
   const HomePageChild({super.key});
   @override
@@ -248,3 +249,6 @@ class SingleCard extends StatelessWidget {
     );
   }
 }
+
+
+ */
