@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/PetData.dart';
 import 'package:flutterapp/PetClass.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+/*
+class HomePageChild extends StatelessWidget {
+  const HomePageChild({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +62,9 @@ class Group31 extends StatelessWidget {
     // Retrieve screen dimensions
     final screenWidth = MediaQuery.of(context).size.width;
 
+    // Filter pets to only include those with owner set as 'Boy'
+    final boyPets = pets.where((pet) => pet.owner == 'Boy').toList();
+
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: screenWidth * 0.02,
@@ -70,10 +74,10 @@ class Group31 extends StatelessWidget {
         crossAxisCount: 3, // 3 cards per row
         crossAxisSpacing: screenWidth * 0.02, // 2% spacing between columns
         mainAxisSpacing: screenWidth * 0.02, // 2% spacing between rows
-        children: pets.map((pet) {
+        children: boyPets.map((pet) {
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/petprofile', arguments: pet);
+              Navigator.pushNamed(context, '/petprofile_child', arguments: pet);
             },
             child: SingleCard(pet: pet),
           );
@@ -245,3 +249,6 @@ class SingleCard extends StatelessWidget {
     );
   }
 }
+
+
+ */

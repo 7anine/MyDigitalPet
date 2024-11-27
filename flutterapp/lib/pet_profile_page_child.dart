@@ -4,8 +4,9 @@ import 'package:flutterapp/textstyle.dart';
 import 'package:flutterapp/PetClass.dart';
 import 'dart:math';
 
-class PetProfile extends StatelessWidget{
-  const PetProfile ({super.key});
+/*
+class PetProfileChild extends StatelessWidget{
+  const PetProfileChild ({super.key});
   @override
   Widget build(BuildContext context) {
     final Pet pet = ModalRoute.of(context)?.settings.arguments as Pet; //retrieves the pet data that was passed from the home page
@@ -37,7 +38,7 @@ class PetProfile extends StatelessWidget{
                 size: 30,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/home');
+                Navigator.pushNamed(context, '/home_child');
               },
             ),
           ],
@@ -106,7 +107,6 @@ class _PetProfileBodyState extends State<PetProfileBody> {
               petName: widget.pet.name,
               petDescription: widget.pet.description,
               petImage: widget.pet.image,
-              ownerImage: widget.pet.ownerimage,
             ),
             Padding(
               padding: const EdgeInsets.only(right: 20.0, top: 54),
@@ -227,53 +227,29 @@ class PetInfo extends StatelessWidget {
   final String petName;
   final String petDescription;
   final String petImage;
-  final String ownerImage;
-
-  const PetInfo({
-    super.key,
-    required this.petName,
-    required this.petDescription,
-    required this.petImage,
-    required this.ownerImage,
-  });
-
+  const PetInfo({super.key, required this.petName, required this.petDescription,required this.petImage });
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(top: 13), // Adjust the padding as needed
-          child: Text(petName, style: TextStyles.PetProfileFont1),
+          padding: EdgeInsets.only(top: 73-60), // Adjust the padding as needed
+          child:
+          Text(petName , style: TextStyles.PetProfileFont1,),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 5, bottom: 5),
-          child: Text(petDescription, style: TextStyles.PetProfileFont2),
+          padding: EdgeInsets.only(top: 5, bottom: 5,),
+          child:
+          Text(petDescription , style: TextStyles.PetProfileFont2,),
         ),
-        Stack(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(90.0),
-              child: Image.asset(
-                petImage,
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover, // Adjust the fit as needed
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30.0),
-                child: Image.asset(
-                  ownerImage,
-                  width: 60, // Increased size
-                  height: 60, // Increased size
-                  fit: BoxFit.cover, // Adjust the fit as needed
-                ),
-              ),
-            ),
-          ],
+        ClipRRect(
+            borderRadius: BorderRadius.circular(90.0),
+          child: Image.asset(
+            petImage,
+            width: 200,
+            height: 200,
+            fit: BoxFit.cover, // Adjust the fit as needed
+          )
         ),
       ],
     );
@@ -427,3 +403,5 @@ class MoodMeter extends StatelessWidget {
 
 }
 
+
+ */
