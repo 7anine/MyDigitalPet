@@ -2,56 +2,75 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/PetData.dart';
 import 'package:flutterapp/PetClass.dart';
 import 'package:flutterapp/textstyle.dart';
-
 import 'app_colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-        backgroundColor: const Color(0xFF257180),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: AppColors.PetBlue,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
+            ),
+          ),
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            actions: [
+              IconButton(
+                icon: const Icon(
+                  Icons.person,
+                  color: Color(0xFFF2E5BF),
+                  size: 30,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: const Group31(),
+      bottomNavigationBar: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        decoration: const BoxDecoration(
+          color: AppColors.PetBlue,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            // Home Icon Button (Left)
+            const SizedBox(width: 10), // Padding from the left
             IconButton(
-              icon: const Icon(
-                Icons.home,
-                color: Color(0xFFF2E5BF),
-                size: 30,
-              ),
+              icon: const Icon(Icons.add, color: Colors.white, size: 30),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Already on Home Page!')),
-                );
+                // Add your onPressed code here
               },
             ),
-            // Title
-            const Text(
-              'Home',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
+            const SizedBox(width: 10), // Padding between elements
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('assets/images/Boy.jpg'),
             ),
-            // User Icon Button (Right)
-            IconButton(
-              icon: const Icon(
-                Icons.person,
-                color: Color(0xFFF2E5BF),
-                size: 30,
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/login');
-              },
+            const SizedBox(width: 10), // Padding between elements
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage('assets/images/Girl.jpg'),
             ),
           ],
         ),
       ),
-      body: const Group31(),
     );
   }
 }
@@ -96,8 +115,21 @@ class Group31 extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10), // Reduced spacing between the grids
+        Padding(
+          padding: const EdgeInsets.only(left: 18.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: const [
+              Text(
+                'Tasks:',
+                style: TextStyles.PetProfileFont1,
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 10), // Spacing between the text and the list of tasks
         // Scrollable list of tasks
-        Flexible(
+        Expanded(
           child: SingleChildScrollView(
             child: Column(
               children: [
