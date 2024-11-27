@@ -3,6 +3,7 @@ import 'package:flutterapp/PetData.dart';
 import 'package:flutterapp/PetClass.dart';
 import 'package:flutterapp/textstyle.dart';
 import 'app_colors.dart';
+import 'login_page.dart'; // Import the LoginPage
 
 class HomePageChild extends StatelessWidget {
   const HomePageChild({super.key});
@@ -26,9 +27,17 @@ class HomePageChild extends StatelessWidget {
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 10.0),
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundImage: AssetImage('assets/images/Boy.jpg'),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: AssetImage('assets/images/Boy.jpg'),
+                  ),
                 ),
               ),
             ],
@@ -95,7 +104,7 @@ class Group31Child extends StatelessWidget {
                   ...pets.where((pet) => pet.owner == 'Boy').map((pet) {
                     return GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, '/petprofile', arguments: pet);
+                        Navigator.pushNamed(context, '/petprofile_child', arguments: pet);
                       },
                       child: SingleCard(pet: pet),
                     );
