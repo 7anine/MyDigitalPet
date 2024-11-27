@@ -4,7 +4,7 @@ import 'package:flutterapp/textstyle.dart';
 import 'package:flutterapp/PetClass.dart';
 import 'dart:math';
 
-/*
+
 class PetProfileChild extends StatelessWidget{
   const PetProfileChild ({super.key});
   @override
@@ -404,4 +404,3 @@ class MoodMeter extends StatelessWidget {
 }
 
 
- */
