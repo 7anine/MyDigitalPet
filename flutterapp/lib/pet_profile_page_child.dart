@@ -13,7 +13,7 @@ class PetProfileChild extends StatelessWidget{
     final Pet pet = ModalRoute.of(context)?.settings.arguments as Pet; //retrieves the pet data that was passed from the home page
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading:false,
         backgroundColor: const Color(0xFF257180),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
