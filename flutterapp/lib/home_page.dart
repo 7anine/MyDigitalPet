@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/PetData.dart';
 import 'package:flutterapp/PetClass.dart';
 import 'package:flutterapp/textstyle.dart';
-
 import 'app_colors.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,38 +10,60 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.person,
-              color: Color(0xFFF2E5BF),
-              size: 30,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: AppColors.PetBlue,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
             ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/login');
-            },
           ),
-        ],
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            actions: [
+              IconButton(
+                icon: const Icon(
+                  Icons.person,
+                  color: Color(0xFFF2E5BF),
+                  size: 30,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+              ),
+            ],
+          ),
+        ),
       ),
       body: const Group31(),
       bottomNavigationBar: Container(
-        color: AppColors.PetBlue,
         padding: const EdgeInsets.symmetric(vertical: 10.0),
+        decoration: const BoxDecoration(
+          color: AppColors.PetBlue,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+        ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            const SizedBox(width: 10), // Padding from the left
             IconButton(
               icon: const Icon(Icons.add, color: Colors.white, size: 30),
               onPressed: () {
                 // Add your onPressed code here
               },
             ),
+            const SizedBox(width: 10), // Padding between elements
             CircleAvatar(
               radius: 20,
               backgroundImage: AssetImage('assets/images/Boy.jpg'),
             ),
+            const SizedBox(width: 10), // Padding between elements
             CircleAvatar(
               radius: 20,
               backgroundImage: AssetImage('assets/images/Girl.jpg'),
