@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/PetData.dart';
 import 'package:flutterapp/PetClass.dart';
+import 'package:flutterapp/textstyle.dart';
+
+import 'app_colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -66,21 +69,63 @@ class Group31 extends StatelessWidget {
         horizontal: screenWidth * 0.02,
         vertical: screenWidth * 0.02,
       ),
-      child: GridView.count(
-        crossAxisCount: 3, // 3 cards per row
-        crossAxisSpacing: screenWidth * 0.02, // 2% spacing between columns
-        mainAxisSpacing: screenWidth * 0.02, // 2% spacing between rows
-        children: [
-          ...pets.map((pet) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, '/petprofile', arguments: pet);
-              },
-              child: SingleCard(pet: pet),
-            );
-          }).toList(),
-          const AddCard(), // AddCard at the end
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            GridView.count(
+              crossAxisCount: 3, // 3 cards per row
+              crossAxisSpacing: screenWidth * 0.02, // 2% spacing between columns
+              mainAxisSpacing: screenWidth * 0.02, // 2% spacing between rows
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: [
+                ...pets.map((pet) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/petprofile', arguments: pet);
+                    },
+                    child: SingleCard(pet: pet),
+                  );
+                }).toList(),
+                const AddCard(), // AddCard at the end
+              ],
+            ),
+            const SizedBox(height: 20), // Add some spacing between the grids
+            ...pets.expand((pet) => pet.tasks.map((task) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                child: Container(
+                  height: 49,
+                  decoration: BoxDecoration(
+                    color: AppColors.PetBeige,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: Center(
+                            child: Text(task['text'], style: TextStyles.PetProfileFont4),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            })).toList(),
+          ],
+        ),
       ),
     );
   }
