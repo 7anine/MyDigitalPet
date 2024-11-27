@@ -24,7 +24,7 @@ class PetProfile extends StatelessWidget{
                 color: Color(0xFFF2E5BF),
                 size: 30,
               ),
-              onPressed: () => _navigateToSettings(context, pet.image),
+              onPressed: () => _navigateToSettings(context, pet),
             ),
             // Home Icon Button (Right)
             IconButton(
@@ -44,11 +44,11 @@ class PetProfile extends StatelessWidget{
     );
   }
 
-  void _navigateToSettings(BuildContext context, String petImage) {
+  void _navigateToSettings(BuildContext context, Pet pet) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SettingsPage(petImage: petImage),
+        builder: (context) => SettingsPage(pet: pet),
       ),
     );
   }

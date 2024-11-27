@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
+import 'PetClass.dart';
 
 class SettingsPageChild extends StatelessWidget {
-  final String petImage;
+  final Pet pet;
 
-  const SettingsPageChild({super.key, required this.petImage});
+  const SettingsPageChild({super.key, required this.pet});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class SettingsPageChild extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 10.0),
                 child: CircleAvatar(
                   radius: 20,
-                  backgroundImage: AssetImage(petImage),
+                  backgroundImage: AssetImage(pet.image),
                 ),
               ),
             ],
@@ -39,49 +40,39 @@ class SettingsPageChild extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {
-              // Navigate to profile settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Notifications'),
-            onTap: () {
-              // Navigate to notification settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.lock),
-            title: const Text('Privacy'),
-            onTap: () {
-              // Navigate to privacy settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.language),
-            title: const Text('Language'),
-            onTap: () {
-              // Navigate to language settings
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.help),
-            title: const Text('Help & Support'),
-            onTap: () {
-              // Navigate to help & support
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('About'),
-            onTap: () {
-              // Navigate to about page
-            },
-          ),
+          _buildCard(context, 'Assign Responsible', leading: CircleAvatar(
+            radius: 20,
+            backgroundImage: AssetImage(pet.ownerimage),
+          )),
+          _buildCard(context, 'Task History'),
+          _buildCard(context, 'Manage Tasks'),
+          _buildCard(context, 'Edit Pet Info'),
+          _buildCard(context, 'Resource Center'),
+          _buildCard(context, 'Vet Records'),
         ],
+      ),
+    );
+  }
+
+  Widget _buildCard(BuildContext context, String title, {Widget? leading}) {
+    return Card(
+      color: AppColors.PetRed,
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      child: ListTile(
+        leading: leading,
+        title: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.black, // Change the text color to black
+              fontFamily: 'OpenSansExtraBold',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        onTap: () {
+          // Handle navigation
+        },
       ),
     );
   }

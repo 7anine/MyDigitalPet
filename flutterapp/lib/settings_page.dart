@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
+import 'PetClass.dart';
 
 class SettingsPage extends StatelessWidget {
-  final String petImage;
-  final String ownerImage;
+  final Pet pet;
 
-  const SettingsPage({super.key, required this.petImage, required this.ownerImage});
+  const SettingsPage({super.key, required this.pet});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class SettingsPage extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 10.0),
                 child: CircleAvatar(
                   radius: 20,
-                  backgroundImage: AssetImage(petImage),
+                  backgroundImage: AssetImage(pet.image),
                 ),
               ),
             ],
@@ -42,7 +42,7 @@ class SettingsPage extends StatelessWidget {
         children: [
           _buildCard(context, 'Assign Responsible', leading: CircleAvatar(
             radius: 20,
-            backgroundImage: AssetImage(ownerImage),
+            backgroundImage: AssetImage(pet.ownerimage),
           )),
           _buildCard(context, 'Task History'),
           _buildCard(context, 'Manage Tasks'),
