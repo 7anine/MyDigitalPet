@@ -70,14 +70,17 @@ class Group31 extends StatelessWidget {
         crossAxisCount: 3, // 3 cards per row
         crossAxisSpacing: screenWidth * 0.02, // 2% spacing between columns
         mainAxisSpacing: screenWidth * 0.02, // 2% spacing between rows
-        children: pets.map((pet) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, '/petprofile', arguments: pet);
-            },
-            child: SingleCard(pet: pet),
-          );
-        }).toList(),
+        children: [
+          ...pets.map((pet) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/petprofile', arguments: pet);
+              },
+              child: SingleCard(pet: pet),
+            );
+          }).toList(),
+          const AddCard(), // AddCard at the end
+        ],
       ),
     );
   }
