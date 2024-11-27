@@ -14,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, // Remove the back arrow
         backgroundColor: const Color(0xFF257180),
         elevation: 0,
         leading: IconButton(

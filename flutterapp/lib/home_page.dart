@@ -21,6 +21,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
           child: AppBar(
+            automaticallyImplyLeading: false, // Remove the back arrow
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: [
