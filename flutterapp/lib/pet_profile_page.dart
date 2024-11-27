@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/app_colors.dart';
+import 'package:flutterapp/settings_page.dart';
 import 'package:flutterapp/textstyle.dart';
 import 'package:flutterapp/PetClass.dart';
 import 'dart:math';
@@ -23,11 +24,7 @@ class PetProfile extends StatelessWidget{
                 color: Color(0xFFF2E5BF),
                 size: 30,
               ),
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('To settings...')),
-                );
-              },
+              onPressed: () => _navigateToSettings(context, pet.image),
             ),
             // Home Icon Button (Right)
             IconButton(
@@ -46,6 +43,16 @@ class PetProfile extends StatelessWidget{
       body: PetProfileBody(pet: pet,),
     );
   }
+
+  void _navigateToSettings(BuildContext context, String petImage) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SettingsPage(petImage: petImage),
+      ),
+    );
+  }
+
 }
 
 

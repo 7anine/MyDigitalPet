@@ -25,9 +25,7 @@ class PetProfileChild extends StatelessWidget{
                 size: 30,
               ),
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('To settings...')),
-                );
+                Navigator.pushNamed(context, '/settings_child');
               },
             ),
             // Home Icon Button (Right)
