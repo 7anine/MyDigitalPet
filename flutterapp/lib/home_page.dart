@@ -27,16 +27,6 @@ class HomePage extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(
-                  Icons.notifications, // New button for alerts
-                  color: Color(0xFFF2E5BF),
-                  size: 30,
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/alerts'); // Navigate to Alerts Page
-                },
-              ),
-              IconButton(
-                icon: const Icon(
                   Icons.person,
                   color: Color(0xFFF2E5BF),
                   size: 30,
