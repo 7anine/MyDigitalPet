@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/resource_page.dart';
+import 'package:flutterapp/settings_manage_tasks.dart';
+import 'package:flutterapp/settings_pet_info.dart';
+import 'package:flutterapp/vet_records.dart';
 import 'app_colors.dart';
 import 'PetClass.dart';
 
@@ -45,16 +49,49 @@ class SettingsPage extends StatelessWidget {
             backgroundImage: AssetImage(pet.ownerimage),
           )),
           _buildCard(context, 'Task History'),
-          _buildCard(context, 'Manage Tasks'),
-          _buildCard(context, 'Edit Pet Info'),
-          _buildCard(context, 'Resource Center'),
-          _buildCard(context, 'Vet Records'),
+          _buildCard(context, 'Manage Tasks', onTap: () {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => SettingsManageTasks(),
+                settings: RouteSettings(arguments: pet),
+              ),
+            );
+          }),
+          _buildCard(context, 'Edit Pet Info', onTap: () {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => SettingsPetInfo(),
+                settings: RouteSettings(arguments: pet),
+              ),
+            );
+          }),
+          _buildCard(context, 'Resource Center', onTap: () {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(
+                builder: (context) => ResourcePage(),
+                settings: RouteSettings(arguments: pet),
+              ),
+            );
+          }),
+          //_buildCard(context, 'Vet Records'),
+          _buildCard(context, 'Vet Records', onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => VetRecords(),
+                settings: RouteSettings(arguments: pet),
+              ),
+            );
+          }),
         ],
       ),
     );
   }
 
-  Widget _buildCard(BuildContext context, String title, {Widget? leading}) {
+  Widget _buildCard(BuildContext context, String title, {Widget? leading, VoidCallback? onTap}) {
     return Card(
       color: AppColors.PetRed,
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -70,9 +107,7 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
         ),
-        onTap: () {
-          // Handle navigation
-        },
+        onTap: onTap,
       ),
     );
   }

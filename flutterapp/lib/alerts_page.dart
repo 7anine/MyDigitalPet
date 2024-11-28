@@ -5,21 +5,34 @@ class AlertsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Alert'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // Add your settings navigation here
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.home),
-            onPressed: () {
-              Navigator.pop(context); // Return to Home
-            },
-          ),
-        ],
+        automaticallyImplyLeading: false,
+        backgroundColor: const Color(0xFF257180),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Alerts',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.home,
+                color: Color(0xFFF2E5BF),
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/home_child');
+              },
+            ),
+          ],
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
+        ),
       ),
       body: Center(
         child: Column(
