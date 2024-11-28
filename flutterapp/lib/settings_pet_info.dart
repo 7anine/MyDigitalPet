@@ -32,7 +32,13 @@ class SettingsPetInfo extends StatelessWidget{
           ],
         ),
       ),
-      body: PetProfileBody(pet: pet,),
+      body: SizedBox.expand(
+        child: Stack(
+          children: [
+            PetProfileBody(pet: pet,),
+          ],
+        ),
+      ),
     );
   } 
 }
@@ -77,29 +83,151 @@ class _PetProfileBodyState extends State<PetProfileBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(
+      child: Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 20.0, top: 52),
-            ),
-            PetInfo(
-              petName: widget.pet.name,
-              petDescription: widget.pet.description,
-              petImage: widget.pet.image,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20.0, top: 54),
-            ),
-          ],
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Padding(
+          padding: EdgeInsets.only(left: 20.0, top: 52),
+          ),
+          PetInfo(
+          petName: widget.pet.name,
+          petDescription: widget.pet.description,
+          petImage: widget.pet.image,
+          ),
+          const Padding(
+          padding: EdgeInsets.only(left: 20.0, top: 54),
+          ),
+        ],
         ),
         const Padding(
-          padding: const EdgeInsets.only(bottom: 20.0, top: 10.0),
-          child: Text('Edit Image', style: TextStyles.PetProfileFont3),
+        padding: EdgeInsets.only(bottom: 20.0, top: 10.0),
+        child: Text('Edit Image', style: TextStyles.PetProfileFont2),
+        ),
+        const Padding(
+        padding: EdgeInsets.only(top: 13, left: 30),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text('Name', style: TextStyles.PetProfileFont5),
+        ),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(top: 7, left: 30, right: 30),
+        child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+          color: Color(0xFFF2E5BF),
+          borderRadius: BorderRadius.circular(10),
+          ),
+          child: const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          ),
+          ),
+        ),
+        ),
+        const Padding(
+        padding: EdgeInsets.only(top: 20, left: 30),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text('Species', style: TextStyles.PetProfileFont5),
+        ),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(top: 7, left: 30, right: 30),
+        child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+          color: const Color(0xFFF2E5BF),
+          borderRadius: BorderRadius.circular(10),
+          ),
+          child: const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          ),
+          ),
+        ),
+        ),
+        const Padding(
+        padding: EdgeInsets.only(top: 20, left: 30),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text('Age', style: TextStyles.PetProfileFont5),
+        ),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(top: 7, left: 30, right: 30),
+        child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+          color: Color(0xFFF2E5BF),
+          borderRadius: BorderRadius.circular(10),
+          ),
+          child: const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          ),
+          ),
+        ),
+        ),
+        const Padding(
+        padding: EdgeInsets.only(top: 20, left: 30),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text('Sexe', style: TextStyles.PetProfileFont5),
+        ),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(top: 7, left: 30, right: 30),
+        child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+          color: Color(0xFFF2E5BF),
+          borderRadius: BorderRadius.circular(10),
+          ),
+          child: const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          ),
+          ),
+        ),
+        ),
+        const Padding(
+        padding: EdgeInsets.only(top: 20, left: 30),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text('Personal Notes', style: TextStyles.PetProfileFont5),
+        ),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(top: 7, left: 30, right: 30, bottom : 30),
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+          color: Color(0xFFF2E5BF),
+          borderRadius: BorderRadius.circular(10),
+          ),
+          child: const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          ),
+          ),
+        ),
         ),
       ],
+      ),
     );
   }
 }

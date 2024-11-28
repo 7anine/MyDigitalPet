@@ -25,4 +25,16 @@ class TextStyles {
     fontFamily: 'OpenSansExtraBold',
     fontSize: 10.0,
   );
+
+  static const TextStyle PetProfileFont5 = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 15.0,
+    color: AppColors.PetBlue,
+  );
+
+  static const TextStyle PetProfileFont6 = TextStyle(
+    fontFamily: 'OpenSansExtraBold',
+    fontSize: 10.0,
+    color: AppColors.PetOrange
+  );
 }

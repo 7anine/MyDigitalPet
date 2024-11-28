@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:flutterapp/app_colors.dart';
+//import 'package:flutterapp/app_colors.dart';
 //import 'package:flutterapp/settings_page_child.dart';
 import 'package:flutterapp/textstyle.dart';
 import 'package:flutterapp/PetClass.dart';
@@ -97,7 +98,93 @@ class _PetProfileBodyState extends State<PetProfileBody> {
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 20.0, top: 10.0),
-          child: Text(widget.pet.name, style: TextStyles.PetProfileFont3),
+          child: Text(widget.pet.name, style: TextStyles.PetProfileFont5),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 13, left: 30, right: 30),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text('List of Responsibles', style: TextStyles.PetProfileFont5),
+              ),
+                TextButton(
+                onPressed: () {
+                  // Add your edit functionality here
+                },
+                child: const Text(
+                  'edit',
+                  style: TextStyles.PetProfileFont6,
+                ),
+                ),
+            ],
+          ),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(top: 0, left: 30, right: 30),
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+          color: const Color(0xFFF2E5BF),
+          borderRadius: BorderRadius.circular(10),
+          ),
+          child: const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          ),
+          ),
+        ),
+        ),
+        const Padding(
+        padding: EdgeInsets.only(top: 20, left: 30),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text('Emergency Contact', style: TextStyles.PetProfileFont5),
+        ),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(top: 7, left: 30, right: 30),
+        child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+          color: Color(0xFFF2E5BF),
+          borderRadius: BorderRadius.circular(10),
+          ),
+          child: const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          ),
+          ),
+        ),
+        ),
+        const Padding(
+        padding: EdgeInsets.only(top: 20, left: 30),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text('Vet Contact', style: TextStyles.PetProfileFont5),
+        ),
+        ),
+        Padding(
+        padding: const EdgeInsets.only(top: 7, left: 30, right: 30),
+        child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+          color: Color(0xFFF2E5BF),
+          borderRadius: BorderRadius.circular(10),
+          ),
+          child: const TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+          ),
+          ),
+        ),
         ),
       ],
     );
