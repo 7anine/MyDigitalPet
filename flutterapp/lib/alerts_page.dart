@@ -5,12 +5,12 @@ class AlertsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Alert'),
+        title: const Text('Alerts'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              // Add your settings navigation here
+              Navigator.pushNamed(context, '/settings');
             },
           ),
           IconButton(
