@@ -41,26 +41,27 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: const BoxDecoration(color: Color(0xFF257180)),
               ),
             ),
-            // Logo Placeholder
-            const Positioned(
+            // Logo
+            Positioned(
               top: 50,
               left: 0,
               right: 0,
               child: Center(
-                child: CircleAvatar(
-                  radius: 75,
-                  backgroundColor: Colors.white,
-                  child: Text(
-                    'LOGO',
-                    style: TextStyle(
-                      color: Color(0xFF257180),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
+                child: Container(
+                  width: 150, // Set the width for the square
+                  height: 150, // Set the height for the square
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12), // Rounded corners
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/smalllogo.png'), // Image source
+                      fit: BoxFit.cover, // Ensures the image covers the whole area
                     ),
                   ),
                 ),
               ),
             ),
+
+
             // E-MAIL Label
             const Positioned(
               top: 250,

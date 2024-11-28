@@ -67,14 +67,6 @@ class _ResourcePageState extends State<ResourcePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              'Resource Page',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             IconButton(
               icon: const Icon(
                 Icons.home,
@@ -85,6 +77,17 @@ class _ResourcePageState extends State<ResourcePage> {
                 Navigator.pushNamed(context, '/home_child');
               },
             ),
+            IconButton(
+              icon: const Icon(
+                Icons.notifications, // New button for alerts
+                color: Color(0xFFF2E5BF),
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, '/alerts'); // Navigate to Alerts Page
+              },
+            ),
+
           ],
         ),
         shape: const RoundedRectangleBorder(
